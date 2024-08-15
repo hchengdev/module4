@@ -1,0 +1,45 @@
+<form th:action="@{/songs/save}" method="POST" th:object="${uploadForm}" enctype="multipart/form-data">
+<!--    <input type="hidden" th:field="*{id}"/>-->
+    <table>
+        <tbody>
+        <tr>
+            <td>
+                <label for="songTitle">Title</label>
+            </td>
+            <td>
+                <input id="songTitle" th:field="*{title}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="songArtist">Artist</label>
+            </td>
+            <td>
+                <input id="songArtist" th:field="*{artist}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="songGenre">Genre</label>
+            </td>
+            <td>
+                <input id="songGenre" th:field="*{genre}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="songFile">Choose file</label>
+            </td>
+            <td>
+                <input id="songFile" th:field="*{song}" type="file" accept="mp3|ogg|wav|m4p">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Upload">
+                <a th:href="@{/songs}">Back</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>

@@ -1,0 +1,40 @@
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <label>Title</label>
+        </td>
+        <td>
+            <label th:text="${song.title}"></label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Artist</label>
+        </td>
+        <td>
+            <label th:text="${song.artist}"></label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Genre</label>
+        </td>
+        <td>
+            <label th:text="${song.genre}"></label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <audio controls>
+                <source th:src="@{'/media/'+${song.songUrl}}" type="audio/mpeg">
+            </audio>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a th:href="@{/songs}">Back</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
