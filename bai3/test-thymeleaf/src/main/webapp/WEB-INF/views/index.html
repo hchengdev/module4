@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>ListCustomer</title>
+</head>
+<body>
+<h3>Customers</h3>
+<p>
+    <a th:href="@{/customers/create}">
+        Add new customer
+    </a>
+</p>
+
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+</div>
+
+<table id = "customers" th:if="${!customers.isEmpty()}">
+    <thead>
+    <tr>
+<!--        <th>Index</th>-->
+<!--        <th>Count</th>-->
+<!--        <th>Size</th>-->
+<!--        <th>Current</th>-->
+<!--        <th>Even</th>-->
+<!--        <th>Odd</th>-->
+<!--        <th>First</th>-->
+<!--        <th>Last</th>-->
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Welcome</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row,rowStat : ${customers}">
+        <td th:text="${rowStat.index}"></td>
+        <td th:text="${rowStat.count}"></td>
+        <td th:text="${rowStat.size}"></td>
+        <td th:text="${rowStat.current}"></td>
+        <td th:text="${rowStat.even}"></td>
+        <td th:text="${rowStat.odd}"></td>
+        <td th:text="${rowStat.first}"></td>
+        <td th:text="${rowStat.last}"></td>
+        <td th:text="${row.getName()}"></td>
+        <td th:text="${row.getEmail()}"></td>
+        <td th:text="${row.getAddress()}"></td>
+        <td th:switch="${row.address}">
+            <span th:case="'Ha Noi'">Welcome CodeGym Ha Noi</span>
+            <span th:case="'Da Nang'">Welcome CodeGym Da Nang</span>
+            <span th:case="'Sai Gon'">Welcome CodeGym Sai Gon</span>
+            <span th:case="*">Welcome CodeGym</span>
+        </td>
+        <td><a th:href="@{/customers/{id}/edit(id=${row.getId()})}">edit</a></td>
+        <td><a th:href="@{/customers/{id}/delete(id=${row.getId()})}">delete</a></td>
+        <td><a th:href="@{/customers/{id}/view(id=${row.getId()})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+<p th:if="${customers.isEmpty()}">Khong co danh sach customer</p>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

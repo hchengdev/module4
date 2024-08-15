@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>Product List</title>
+</head>
+<body>
+<h3>Product Management</h3>
+<p>
+    <a th:href="@{/products/create}" class="btn btn-primary">
+        Add New Product
+    </a>
+</p>
+
+<form th:action="@{/products/search}" th:object="${product}" method="get">
+    <input type="text" placeholder="Search Product By Name" name = "name">
+    <input type="submit" value="Search">
+</form>
+
+<table id="products" class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Manufacturer</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${product.manufacturer}"></td>
+        <td><a th:href="@{/products/{id}/edit(id=${product.id})}">Edit</a></td>
+        <td><a th:href="@{/products/{id}/delete(id=${product.id})}">Delete</a></td>
+        <td><a th:href="@{/products/{id}/view(id=${product.id})}">View</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
